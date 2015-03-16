@@ -3,9 +3,18 @@ from ForemanExtractor import ForemanExtractor
 from IcingaGenerator import IcingaGenerator
 
 import re
+import os
+import sys
 import itertools
 
-execfile('foremanconfig.py')
+configfile='foremanconfig.py'
+
+if not os.path.isfile(configfile):
+    message="Config file %s not found. Exiting\n"%configfile
+    sys.stderr.write(message)
+    sys.exit(2)
+
+execfile(configfile)
 
 def hostgroup_normalform(hostgroups):
     hg=[]
