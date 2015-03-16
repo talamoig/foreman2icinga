@@ -1,6 +1,6 @@
 # Foreman2Icinga
 
-This Python tools generates
+This Python tool generates
 Icinga2 configuration file fetching informations from a Foreman server.
 
 Before using it you should setup proper values in the `config.py` file,
