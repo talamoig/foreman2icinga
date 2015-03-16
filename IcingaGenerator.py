@@ -18,5 +18,5 @@ class IcingaGenerator:
             hostgroupline="\n\tgroups = [ %s ]"%", ".join(["\"%s\""%x for x in hostgroups])        
         if template!=None:
             templateline="\n\timport \"%s\""%template
-        ret="%s%s%s\n\t%s\n}"%(self.hostheader%hostname,hostgroupline,templateline,self.addrline%hostname)
+        ret="%s%s%s\n\t%s\n}"%(self.hostheader%hostname,templateline,hostgroupline,self.addrline%hostname)
         return ret

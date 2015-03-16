@@ -7,7 +7,7 @@ import os
 import sys
 import itertools
 
-configfile='foremanconfig.py'
+configfile='config.py'
 
 if not os.path.isfile(configfile):
     message="Config file %s not found. Exiting\n"%configfile
@@ -30,12 +30,17 @@ h2group=foremanExt.host2hostgroup()
 
 re_hostexclude=[]
 re_hostinclude=[]
+re_templates=[]
+
 
 for h in hostexclude:
     re_hostexclude.append(re.compile(h))
 
 for h in hostinclude:
     re_hostinclude.append(re.compile(h))
+
+for (h,t) in hosttemplates.items():
+    re_templates.append((re.compile(h),t))
 
 for host in h2group.keys():
 
@@ -46,9 +51,16 @@ for host in h2group.keys():
     exclusion=filter(lambda x: x.match(host),re_hostexclude)
     if len(exclusion)>0:
         continue
-    
+
+    template=None
+    for (m,t) in re_templates:
+        if m.match(host):
+            template=t
+            break
+
     hostgroups=h2group[host]
-    print icingaGen.define_host(host,hostgroup_normalform(hostgroups))
+
+    print icingaGen.define_host(host,hostgroup_normalform(hostgroups),template)
     
 hostgroups=list(set(itertools.chain(*[hostgroup_normalform(x) for x in h2group.values()])))
 

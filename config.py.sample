@@ -13,6 +13,12 @@ auth="c2Rmc2RmOjM0NTNsNGtmbXNkCg"
 #
 # in a host name matches any of these regular-expression is excluded
 hostexclude=['host-to-exclude','exlude-this.*']
-
-#
 hostinclude=['.*']
+
+# hosttemplates is a dictionary of host->template. 
+# If a host matches a key, the corresponding value will be used
+# in the host definition in the import directive
+#
+# The first match will
+
+hosttemplates=[("web-", "web-servers"), ("db-", "db-servers"), (".*","generic-host")]
