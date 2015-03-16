@@ -3,7 +3,7 @@
 This Python tool generates
 Icinga2 configuration file fetching informations from a Foreman server.
 
-Before using it you should setup proper values in the `config.py` file,
+For using it, prover values should be configured in `config.py`,
 at least the `baseurl` and `auth` parameters.
 
 The script currently only define hosts and hostgroups.
